@@ -20,7 +20,7 @@ public class OrderService {
         // call product service to check if the product id is exists or throw an error
        Boolean result=  webClientBuilder.build()
                 .get()
-                .uri("http://product.service/api/products/exists/"+req.getProductId())
+                .uri("http://product-service/api/products/exists/"+req.getProductId())
                 .retrieve()
                 .bodyToMono(Boolean.class)// castomize the response interface
                 .block();
