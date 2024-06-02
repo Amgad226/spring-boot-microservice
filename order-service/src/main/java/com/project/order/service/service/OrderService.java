@@ -11,15 +11,16 @@ import org.springframework.web.reactive.function.client.WebClient;
 @RequiredArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
     public void storeOrder(OrderRequest req){
         Order order  = new Order();
         order.setName(req.getName());
         order.setProductId(req.getProductId());
 
         // call product service to check if the product id is exists or throw an error
-       Boolean result=  webClient.get()
-                .uri("http://localhost:8080/api/products/exists/"+req.getProductId())
+       Boolean result=  webClientBuilder.build()
+                .get()
+                .uri("http://product.service/api/products/exists/"+req.getProductId())
                 .retrieve()
                 .bodyToMono(Boolean.class)// castomize the response interface
                 .block();
