@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name = "orders")
 @Getter
@@ -17,5 +20,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id ;
     private String name ;
-    private String productId ;
+    private String userId;
+    private LocalDateTime createdAt;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<OrderItems> orderItemsList;
+
 }

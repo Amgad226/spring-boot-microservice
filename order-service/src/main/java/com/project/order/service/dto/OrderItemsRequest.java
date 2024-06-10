@@ -1,17 +1,18 @@
-package com.project.product.service.dto;
+package com.project.order.service.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductRequest {
+@Builder
+public class OrderItemsRequest {
     @NotEmpty
-    private String name;
-    private int price ;
-    private String userId;
-    private int quantity ;
+    private String productId ;
+    @NotEmpty
+    private Integer quantity;
 }

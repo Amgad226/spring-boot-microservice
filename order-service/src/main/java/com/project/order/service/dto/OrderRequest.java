@@ -1,11 +1,11 @@
 package com.project.order.service.dto;
 
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,11 +13,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class OrderRequest {
 
+//    @Size(min = 2, message = "name should have at least 2 characters")
+//    private String name;
     @NotEmpty
-    @Size(min = 2, message = "name should have at least 2 characters")
-    private String name;
+    private List<OrderItemsRequest> orderItemsList;
 
     @NotEmpty
-    private String productId;
+    private String userId;
 
 }

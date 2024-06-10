@@ -20,9 +20,11 @@ public class UserServiceApplication {
 
 			User amjad = new User();
 			amjad.setName("Amjad");
+			amjad.setRole("Company");
 
 			User abood = new User();
 			abood.setName("abood");
+			abood.setRole("Customer");
 			userRepository.save(amjad);
 			userRepository.save(abood);
 		};
