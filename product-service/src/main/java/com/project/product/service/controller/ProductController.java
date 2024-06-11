@@ -6,6 +6,8 @@ import com.project.product.service.model.Product;
 import com.project.product.service.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +36,17 @@ private final ProductService productService;
     @ResponseStatus(HttpStatus.OK)
     public List<ProductResponse> productExists(@RequestParam List<String> productId){
         return productService.productExists(productId) ;
+    }
+
+    @Autowired
+    Environment environment;
+
+
+    @GetMapping("/port")
+    @ResponseStatus(HttpStatus.OK)
+    public String getPort (){
+        String port = environment.getProperty("server.port");
+        return port;
     }
 
 
