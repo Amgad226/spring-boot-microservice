@@ -20,12 +20,26 @@ public class UserService {
         return users.stream().map(this::mapToUserResponse).toList();
     }
     public Optional<UserResponse> getUserById(Long id) {
-        return userRepository.findById(id)
+        try{
+
+       return userRepository.findById(id)
                 .map(this::mapToUserResponse);
+
+        }
+    catch (Throwable e ){
+        return Optional.ofNullable(dummyUser());
+
+    }
     }
 
 
-
+    public UserResponse dummyUser() {
+        return UserResponse.builder()
+                .id(0)
+                .name("dummyUser")
+                .role(null)
+                .build();
+    }
     private UserResponse mapToUserResponse(User user) {
         return UserResponse.builder()
                 .id(user.getId())

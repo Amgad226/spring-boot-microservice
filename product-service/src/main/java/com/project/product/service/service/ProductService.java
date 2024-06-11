@@ -40,6 +40,7 @@ public class ProductService {
                 .block();
 
         if (result == null || result.getRole() == null || result.getRole().isEmpty()) {
+            System.out.println("not found user in user service ");
             throw new IllegalArgumentException("User ID is not valid or user does not have a role.");
         }
 

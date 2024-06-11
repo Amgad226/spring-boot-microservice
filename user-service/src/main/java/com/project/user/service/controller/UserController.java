@@ -29,11 +29,11 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUser(@PathVariable Long id) {
         Optional<UserResponse> userResponseOptional = userService.getUserById(id);
-
         if (userResponseOptional.isPresent()) {
             return ResponseEntity.ok(userResponseOptional.get());
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok(userService.dummyUser());
+//            return ResponseEntity.notFound().build();
         }
     }
 
